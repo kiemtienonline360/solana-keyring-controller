@@ -1,0 +1,28 @@
+{
+  "name": "solana-keyring-controller",
+  "version": "1.0.0",
+  "description": "A module for managing various keyrings of Solana accounts, encrypting them, and using them.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --require test/helper.js test/solana-wallet.js test/solana-simple-keyring.js test/solana-hd-keyring.js test/index.js",
+    "lint": "eslint . --ext js,json",
+    "lint:fix": "eslint . --ext js,json --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kiemtienonline360/solana-keyring-controller.git"
+  },
+  "keywords": [
+    "solana",
+    "metamask",
+    "accounts",
+    "keys"
+  ],
+  "author": "DaoThang",
+  "license": "ISC",
+  "dependencies": {
+  },
+  "files": [
+    "index.js"
+  ]
+}

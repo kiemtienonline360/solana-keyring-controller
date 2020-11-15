@@ -17,14 +17,10 @@ describe('Solana-Wallet', function () {
     it('Generating wallet run normally', async function () {
       let w = Wallet.generateWallet();
       checkWallet(w);
-
-      // console.log("Address", w.getAddress());
-      // console.log("Public Key", w.getPublicKeyString());
-      // console.log("Secret Key", w.getSecretKeyString());
     });
 
     it('Generating wallet from seed run normally', async function () {
-      let info = Wallet.generateMnemonic();
+      let info = await Wallet.generateMnemonic();
       assert.equal(info.mnemonic.split(" ").length, 12, "Mnemonic must contain 12 words!");
 
       let w = Wallet.fromSeed(info.seed, 0, 0);
@@ -33,7 +29,7 @@ describe('Solana-Wallet', function () {
 
     it('The address match with mnemonic', async function () {
       let mnemonic = "puzzle seed penalty soldier say clay field arctic metal hen cage runway";
-      let seed = Wallet.mnemonicToSeed(mnemonic);
+      let seed = await Wallet.mnemonicToSeed(mnemonic);
       let w = Wallet.fromSeed(seed);
       let address = w.getAddress();
       assert.equal(address, "7dpkJCqGUd9iPT5vkAtkrpnDXoZkFLjVEzdam8NRQQ83", "The address match with mnemonic");

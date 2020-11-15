@@ -59,7 +59,7 @@ async function sendTransaction(srcWallet, dstAddress, amount) {
 async function showWallet(num) {
   let mnemonic = "special current change similar vapor magic maple sort rival biology cattle advice";
   let hd = new HDKeyring({mnemonic: mnemonic});
-  hd.addAccounts(num);
+  await hd.addAccounts(num);
   let accounts = await hd.getAccounts();
   for (let idx=0; idx<accounts.length; idx++) {
     console.log("[" + idx + "] " + accounts[idx] + " => " + await getBalance(accounts[idx]) + " SOL");

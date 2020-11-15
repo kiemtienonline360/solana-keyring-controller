@@ -55,9 +55,9 @@ Wallet.fromSecretKey = function(secretKey) {
   return new Wallet(secretKey);
 }
 
-Wallet.generateMnemonic = function() {
+Wallet.generateMnemonic = async function() {
   const mnemonic = bip39.generateMnemonic(128);
-  const seed = bip39.mnemonicToSeed(mnemonic);
+  const seed = await bip39.mnemonicToSeed(mnemonic);
   return { mnemonic, seed: seed };
 }
 

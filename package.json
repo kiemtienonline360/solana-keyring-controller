@@ -21,6 +21,17 @@
   "author": "DaoThang",
   "license": "ISC",
   "dependencies": {
+    "@solana/web3.js": "^0.87.0",
+    "bip32": "^2.0.6",
+    "bip39": "^3.0.3",
+    "bluebird": "^3.7.2",
+    "browser-passworder": "^2.0.3",
+    "jsdom": "^16.4.0",
+    "jsdom-global": "^3.0.2",
+    "loglevel": "^1.7.0",
+    "obs-store": "^4.0.3",
+    "polyfill-crypto.getrandomvalues": "^1.0.0",
+    "sinon": "^9.2.1"
   },
   "files": [
     "index.js"

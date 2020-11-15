@@ -1,4 +1,3 @@
-
 const { EventEmitter } = require('events');
 const log = require('loglevel');
 const ObservableStore = require('obs-store');
@@ -17,11 +16,11 @@ function normalizeAddress(address) {
 }
 
 function stripHexPrefix(data) {
-
+	return data;
 }
 
 function addHexPrefix(data) {
-
+	return data;
 }
 
 class KeyringController extends EventEmitter {

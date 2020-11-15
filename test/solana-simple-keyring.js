@@ -69,7 +69,7 @@ describe('Solana-Simple-Keyring', function () {
       
       let secretKeys = sk1.serialize();
       let sk2 = new SimpleKeyring();
-      sk2.deserialize(secretKeys);
+      await sk2.deserialize(secretKeys);
       let acc2 = await sk2.getAccounts();
 
       assert.equal(acc1.length, acc2.length, "The length must be same!");

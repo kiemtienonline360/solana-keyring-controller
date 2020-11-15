@@ -1,11 +1,9 @@
-const ethUtil = require('ethereumjs-util')
-const { normalize } = require('eth-sig-util')
 const MetamaskConfig = require('./config.js')
 
-const MAINNET_RPC = MetamaskConfig.network.mainnet
-const ROPSTEN_RPC = MetamaskConfig.network.ropsten
-const KOVAN_RPC = MetamaskConfig.network.kovan
-const RINKEBY_RPC = MetamaskConfig.network.rinkeby
+const MAINNET_RPC = 'https://api.mainnet-beta.solana.com'
+const TESTNET_RPC = 'https://testnet.solana.com'
+const DEVNET_RPC = 'https://devnet.solana.com'
+const LOCALNET_RPC = 'http://localhost:8899'
 
 /* The config-manager is a convenience object
  * wrapping a pojo-migrator.
@@ -75,7 +73,7 @@ ConfigManager.prototype.getSelectedAccount = function () {
 
 ConfigManager.prototype.setSelectedAccount = function (address) {
   const config = this.getConfig()
-  config.selectedAccount = ethUtil.addHexPrefix(address)
+  config.selectedAccount = address
   this.setConfig(config)
 }
 
@@ -145,17 +143,17 @@ ConfigManager.prototype.getCurrentRpcAddress = function () {
     case 'mainnet':
       return MAINNET_RPC
 
-    case 'ropsten':
-      return ROPSTEN_RPC
+    case 'testnet':
+      return TESTNET_RPC
 
-    case 'kovan':
-      return KOVAN_RPC
+    case 'devnet':
+      return DEVNET_RPC
 
-    case 'rinkeby':
-      return RINKEBY_RPC
+    case 'localnet':
+      return LOCALNET_RPC
 
     default:
-      return provider && provider.rpcTarget ? provider.rpcTarget : RINKEBY_RPC
+      return provider && provider.rpcTarget ? provider.rpcTarget : TESTNET_RPC
   }
 }
 
@@ -187,13 +185,13 @@ ConfigManager.prototype.getWalletNicknames = function () {
 }
 
 ConfigManager.prototype.nicknameForWallet = function (account) {
-  const address = normalize(account)
+  const address = account
   const nicknames = this.getWalletNicknames()
   return nicknames[address]
 }
 
 ConfigManager.prototype.setNicknameForWallet = function (account, nickname) {
-  const address = normalize(account)
+  const address = account
   const nicknames = this.getWalletNicknames()
   nicknames[address] = nickname
   const data = this.getData()

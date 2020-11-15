@@ -13,7 +13,9 @@ class HdKeyring extends SimpleKeyring {
   constructor (opts = {}) {
     super();
     this.type = type;
-    this.deserialize(opts);
+    if (opts!=null) {
+      this.deserialize(opts).then(function(wallets) {});
+    }
   }
 
   serialize () {
@@ -23,28 +25,28 @@ class HdKeyring extends SimpleKeyring {
     };
   }
 
-  deserialize (opts = {}) {
-    this.opts = opts || {}
-    this.wallets = []
-    this.mnemonic = null
+  async deserialize (opts) {
+    this.opts = opts || {};
+    this.wallets = [];
+    this.mnemonic = null;
 
     if (opts.mnemonic) {
       this._initFromMnemonic(opts.mnemonic);
     }
 
     if (opts.numberOfAccounts) {
-      return this.addAccounts(opts.numberOfAccounts);
+      return await this.addAccounts(opts.numberOfAccounts);
     }
   }
 
-  addAccounts (numberOfAccounts = 1) {
+  async addAccounts (numberOfAccounts = 1) {
     if (!this.mnemonic) {
       this._initFromMnemonic(bip39.generateMnemonic());
     }
 
     const oldLen = this.wallets.length;
     const newWallets = [];
-    let seed = Wallet.mnemonicToSeed(this.mnemonic);
+    let seed = await Wallet.mnemonicToSeed(this.mnemonic);
     for (let i = oldLen; i < numberOfAccounts + oldLen; i++) {
       let wallet = Wallet.fromSeed(seed, 0, i);
       newWallets.push(wallet);
@@ -52,7 +54,7 @@ class HdKeyring extends SimpleKeyring {
     }
     const hexWallets = newWallets.map((w) => {
       return w.getAddress();
-    })
+    });
     return Promise.resolve(hexWallets);
   }
 

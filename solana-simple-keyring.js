@@ -5,11 +5,11 @@ const createKeccakHash = require('keccak');
 
 class SimpleKeyring extends EventEmitter {
   /* PUBLIC METHODS */
-  constructor (opts) {
+  constructor (opts = []) {
     super();
     this.type = type;
     this.wallets = [];
-    this.deserialize(opts);
+    if (opts!=null) this.deserialize(opts);
   }
 
   serialize () {

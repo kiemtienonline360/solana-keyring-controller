@@ -1,8 +1,6 @@
 # Eth Keyring Controller [![CircleCI](https://circleci.com/gh/MetaMask/KeyringController.svg?style=svg)](https://circleci.com/gh/MetaMask/KeyringController)
 
-A module for managing groups of Ethereum accounts called "Keyrings", defined originally for MetaMask's multiple-account-type feature.
-
-To add new account types to a `KeyringController`, just make sure it follows [The Keyring Class Protocol](./docs/keyring.md).
+A module for managing groups of Solana accounts called "Keyrings", defined originally for MetaMask's multiple-account-type feature.
 
 The KeyringController has three main responsibilities:
 - Initializing & using (signing with) groups of Ethereum accounts ("keyrings").
@@ -11,13 +9,13 @@ The KeyringController has three main responsibilities:
 
 ## Installation
 
-`npm install eth-keyring-controller --save`
+`npm install kiemtienonline360/solana-keyring-controller`
 
 ## Usage
 
 ```javascript
-const KeyringController = require('eth-keyring-controller')
-const SimpleKeyring = require('eth-simple-keyring')
+const KeyringController = require('solana-keyring-controller')
+const SimpleKeyring = require('solana-simple-keyring')
 
 const keyringController = new KeyringController({
   keyringTypes: [SimpleKeyring], // optional array of types to support.
